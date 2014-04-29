@@ -33,16 +33,21 @@ var csso = require('gulp-csso');
 var rename = require("gulp-rename");
 
 gulp.task('default', function(){
+
+  // copy original index.html to index-dev.html
   gulp.src('src/main/webapp/index.html')
       .pipe(rename('index-dev.html'))
       .pipe(gulp.dest('target/overlay'));
+
+  // compress resources from index.html
   gulp.src('src/main/webapp/index.html')
       .pipe(usemin({
-        vendor: [uglify(), rev(), filesize()],
-        scripts: [ngmin(), uglify(), rev(), filesize()],
-        stylesheets: [csso(), 'concat', rev(), filesize()]
+        vendor: [filesize(), uglify(), rev(), filesize()],
+        scripts: [filesize(), ngmin(), uglify(), rev(), filesize()],
+        stylesheets: ['concat', filesize(), csso(), rev(), filesize()]
       }))
       .pipe(gulp.dest('target/overlay'));
+      
 });
 
 gulp.on('err', function (err) {
