@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.github.sdorra</groupId>
+  <artifactId>buildfrontend-maven-plugin-demo</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>buildfrontend-maven-plugin-demo</name>
+  
+  <url>https://github.com/sdorra/buildfrontend-maven-plugin-demo</url>
+  
+  <licenses>
+    <license>
+      <name>The MIT license</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>sdorra</id>
+      <name>Sebastian Sdorra</name>
+      <email>s.sdorra@gmail.com</email>
+      <timezone>Europe/Berlin</timezone>
+    </developer>
+  </developers>
+  
+  <scm>
+    <connection>scm:git:https://github.com/sdorra/buildfrontend-maven-plugin-demo</connection>
+    <developerConnection>scm:git:git@github.com:sdorra/buildfrontend-maven-plugin-demo.git</developerConnection>
+    <url>https://github.com/sdorra/buildfrontend-maven-plugin-demo</url>
+  </scm>
+
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/sdorra/buildfrontend-maven-plugin-demo/issues</url>
+  </issueManagement>
+
+  <dependencies>
+    
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>6.0</version>
+      <scope>provided</scope>
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+    <plugins>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>${project.build.javaLevel}</source>
+          <target>${project.build.javaLevel}</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <webResources>
+            <resource>
+              <directory>${project.build.directory}/overlay</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>com.github.sdorra</groupId>
+        <artifactId>buildfrontend-maven-plugin</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>npm-install</goal>
+              <goal>bower-install</goal>
+              <goal>gulp</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+    </plugins>
+  </build>
+  
+  <pluginRepositories>
+    
+    <pluginRepository>
+      <id>maven.scm-manager.org</id>
+      <name>scm-manager release repository</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <url>http://maven.scm-manager.org/nexus/content/groups/public/</url>
+    </pluginRepository>
+    
+  </pluginRepositories>
+  
+  <distributionManagement>
+
+    <repository>
+      <id>maven.scm-manager.org</id>
+      <name>scm-manager release repository</name>
+      <url>http://maven.scm-manager.org/nexus/content/repositories/releases</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>maven.scm-manager.org</id>
+      <name>scm-manager snapshot repository</name>
+      <url>http://maven.scm-manager.org/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+
+  </distributionManagement>
+
+  <properties>
+    <project.build.javaLevel>1.6</project.build.javaLevel>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+</project>
