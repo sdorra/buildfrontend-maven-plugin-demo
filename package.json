@@ -1,18 +1,17 @@
 {
   "name": "buildfrontend-maven-plugin-demo",
   "version": "0.0.1",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "bower": "^1.3.3",
+    "bower": "^1.3.12",
     "gulp": "^3.6.2",
-    "gulp-uglify": "^0.2.1",
     "gulp-concat": "^2.2.0",
-    "gulp-rev": "^0.3.2",
-    "gulp-filesize": "^0.0.6",
-    "gulp-usemin": "^0.3.3",
-    "gulp-ngmin": "^0.2.0",
     "gulp-csso": "^0.2.8",
-    "gulp-rename": "^1.2.0"
+    "gulp-filesize": "^0.0.6",
+    "gulp-ngmin": "^0.2.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-rev": "^0.3.2",
+    "gulp-uglify": "^0.2.1",
+    "gulp-usemin": "^0.3.3"
   }
 }
